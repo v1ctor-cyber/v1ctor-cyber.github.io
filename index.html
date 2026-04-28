@@ -29,7 +29,6 @@
     min-height: 100vh;
   }
 
-  /* Grid background */
   body::before {
     content: '';
     position: fixed;
@@ -50,7 +49,6 @@
     z-index: 1;
   }
 
-  /* NAV */
   nav {
     border-bottom: 1px solid var(--border);
     padding: 18px 0;
@@ -93,7 +91,6 @@
 
   nav a:hover { color: var(--accent); }
 
-  /* HERO */
   .hero {
     padding: 90px 0 72px;
     border-bottom: 1px solid var(--border);
@@ -184,7 +181,6 @@
     color: var(--accent);
   }
 
-  /* SECTIONS */
   section {
     padding: 64px 0;
     border-bottom: 1px solid var(--border);
@@ -209,7 +205,6 @@
     background: var(--border);
   }
 
-  /* STACK */
   .stack-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
@@ -245,7 +240,6 @@
     color: var(--text);
   }
 
-  /* CERTS */
   .certs-grid {
     display: grid;
     grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
@@ -326,9 +320,25 @@
     border-radius: 8px;
     padding: 24px;
     transition: border-color 0.2s;
+    position: relative;
+    overflow: hidden;
+    text-decoration: none;
+    display: block;
   }
 
-  .project-card:hover { border-color: var(--muted); }
+  .project-card::before {
+    content: '';
+    position: absolute;
+    top: 0; left: 0;
+    width: 3px;
+    height: 100%;
+    background: var(--accent);
+    opacity: 0;
+    transition: opacity 0.2s;
+  }
+
+  .project-card:hover { border-color: var(--accent); }
+  .project-card:hover::before { opacity: 1; }
 
   .project-header {
     display: flex;
@@ -353,7 +363,7 @@
     flex-shrink: 0;
   }
 
-  .status-building {
+  .status-live {
     background: rgba(0,212,170,0.1);
     color: var(--accent);
     border: 1px solid rgba(0,212,170,0.25);
@@ -372,6 +382,28 @@
     margin-bottom: 14px;
   }
 
+  .project-highlights {
+    list-style: none;
+    margin-bottom: 16px;
+  }
+
+  .project-highlights li {
+    font-size: 13px;
+    color: var(--muted);
+    padding: 3px 0;
+    display: flex;
+    align-items: flex-start;
+    gap: 8px;
+  }
+
+  .project-highlights li::before {
+    content: '→';
+    color: var(--accent);
+    font-family: var(--mono);
+    flex-shrink: 0;
+    margin-top: 1px;
+  }
+
   .project-tags {
     display: flex;
     flex-wrap: wrap;
@@ -388,7 +420,24 @@
     border-radius: 3px;
   }
 
-  /* ABOUT */
+  .tag-sec {
+    background: rgba(0,212,170,0.06);
+    border: 1px solid rgba(0,212,170,0.2);
+    color: var(--accent);
+  }
+
+  .project-link {
+    font-family: var(--mono);
+    font-size: 11px;
+    color: var(--muted);
+    margin-top: 14px;
+    display: flex;
+    align-items: center;
+    gap: 6px;
+  }
+
+  .project-link::after { content: '↗'; }
+
   .about-grid {
     display: grid;
     grid-template-columns: 1fr 1fr;
@@ -415,7 +464,6 @@
     line-height: 1.8;
   }
 
-  /* CONTACT */
   .contact-row {
     display: flex;
     flex-wrap: wrap;
@@ -441,7 +489,6 @@
     border-color: var(--accent);
   }
 
-  /* FOOTER */
   footer {
     padding: 32px 0;
     text-align: center;
@@ -453,23 +500,18 @@
     color: var(--muted);
   }
 
-  /* ANIMATIONS */
   @keyframes fadeUp {
     from { opacity: 0; transform: translateY(16px); }
     to   { opacity: 1; transform: translateY(0); }
   }
 
-  .hero > * {
-    animation: fadeUp 0.5s ease both;
-  }
+  .hero > * { animation: fadeUp 0.5s ease both; }
+  .hero-tag     { animation-delay: 0.05s; }
+  h1            { animation-delay: 0.12s; }
+  .hero-sub     { animation-delay: 0.18s; }
+  .hero-desc    { animation-delay: 0.24s; }
+  .hero-actions { animation-delay: 0.30s; }
 
-  .hero-tag       { animation-delay: 0.05s; }
-  h1              { animation-delay: 0.12s; }
-  .hero-sub       { animation-delay: 0.18s; }
-  .hero-desc      { animation-delay: 0.24s; }
-  .hero-actions   { animation-delay: 0.30s; }
-
-  /* Cursor blink on logo */
   .cursor {
     display: inline-block;
     width: 8px;
@@ -494,6 +536,7 @@
     <ul>
       <li><a href="#stack">stack</a></li>
       <li><a href="#certs">certs</a></li>
+      <li><a href="#projects">projetos</a></li>
       <li><a href="#about">sobre</a></li>
       <li><a href="#contact">contact</a></li>
     </ul>
@@ -523,13 +566,13 @@
     <div class="stack-grid">
       <div class="stack-item"><div class="stack-dot"></div><span>Linux</span></div>
       <div class="stack-item"><div class="stack-dot"></div><span>Python</span></div>
-      <div class="stack-item"><div class="stack-dot"></div><span>Redes TCP/IP</span></div>
+      <div class="stack-item"><div class="stack-dot"></div><span>PostgreSQL</span></div>
+      <div class="stack-item"><div class="stack-dot"></div><span>SQL Injection</span></div>
       <div class="stack-item"><div class="stack-dot"></div><span>OWASP Top 10</span></div>
-      <div class="stack-item"><div class="stack-dot"></div><span>Análise de Vulnerabilidades</span></div>
-      <div class="stack-item"><div class="stack-dot"></div><span>Segurança em Redes</span></div>
-      <div class="stack-item"><div class="stack-dot blue"></div><span>Git & GitHub</span></div>
-      <div class="stack-item"><div class="stack-dot blue"></div><span>TryHackMe</span></div>
-      <div class="stack-item"><div class="stack-dot blue"></div><span>OverTheWire Bandit</span></div>
+      <div class="stack-item"><div class="stack-dot"></div><span>Redes TCP/IP</span></div>
+      <div class="stack-item"><div class="stack-dot"></div><span>Flask</span></div>
+      <div class="stack-item"><div class="stack-dot"></div><span>bcrypt / hashing</span></div>
+      <div class="stack-item"><div class="stack-dot blue"></div><span>Git & GitHub</span></div
       <div class="stack-item"><div class="stack-dot blue"></div><span>HTML / CSS / JS</span></div>
     </div>
   </section>
@@ -555,6 +598,58 @@
     </div>
   </section>
 
+  <section id="projects">
+    <div class="section-label">projetos</div>
+    <div class="projects-list">
+
+      <a href="https://github.com/v1ctor-cyber/db-security-hospital" target="_blank" class="project-card">
+        <div class="project-header">
+          <div class="project-name">db-security-hospital</div>
+          <span class="project-status status-live">live</span>
+        </div>
+        <p class="project-desc">
+          Sistema hospitalar modelado e implementado com segurança desde o modelo conceitual.
+          Demonstração prática de SQL injection e mitigação com queries parametrizadas,
+          bcrypt e auditoria automática de acessos.
+        </p>
+        <ul class="project-highlights">
+          <li>Modelagem DER → schema SQL com 11 tabelas e decisões de segurança documentadas</li>
+          <li>SQL injection demonstrado ao vivo — bypass de login sem conhecer nenhuma senha</li>
+          <li>App seguro bloqueando 100% dos ataques com queries parametrizadas e bcrypt</li>
+          <li>LOG_ACESSO registrando automaticamente tentativas de invasão com IP e timestamp</li>
+          <li>Query de auditoria detectando acessos suspeitos fora do horário comercial</li>
+        </ul>
+        <div class="project-tags">
+          <span class="tag tag-sec">AppSec</span>
+          <span class="tag tag-sec">SQL Injection</span>
+          <span class="tag tag-sec">Auditoria</span>
+          <span class="tag">PostgreSQL</span>
+          <span class="tag">Python</span>
+          <span class="tag">Flask</span>
+          <span class="tag">bcrypt</span>
+        </div>
+        <div class="project-link">github.com/v1ctor-cyber/db-security-hospital</div>
+      </a>
+
+      <div class="project-card" style="opacity:0.5; cursor:default;">
+        <div class="project-header">
+          <div class="project-name">devSecOps-pipeline</div>
+          <span class="project-status status-planned">em breve</span>
+        </div>
+        <p class="project-desc">
+          Pipeline CI/CD com GitHub Actions integrando análise de segurança automática —
+          SAST, dependency scanning e validação de secrets antes de cada deploy.
+        </p>
+        <div class="project-tags">
+          <span class="tag tag-sec">DevSecOps</span>
+          <span class="tag">GitHub Actions</span>
+          <span class="tag">SAST</span>
+        </div>
+      </div>
+
+    </div>
+  </section>
+
   <section id="about">
     <div class="section-label">sobre</div>
     <div class="about-grid">
@@ -569,9 +664,9 @@
       <div class="about-block">
         <h3>foco atual</h3>
         <p>
-          Segurança da informação de forma ampla — redes, sistemas operacionais, criptografia,
-          análise de vulnerabilidades e fundamentos de defesa. Praticando com TryHackMe,
-          OverTheWire Bandit e linuxjourney.com. Buscando primeira oportunidade na área.
+          AppSec e DevSecOps — combinando código e segurança desde a modelagem até a implementação.
+          Praticando com TryHackMe, OverTheWire Bandit e projetos próprios.
+          Buscando primeira oportunidade na área.
         </p>
       </div>
     </div>
@@ -590,7 +685,7 @@
 
 <footer>
   <div class="container">
-    <p>v1ctor-cyber · Ribeirão Preto, SP · 2025</p>
+    <p>v1ctor-cyber · Ribeirão Preto, SP · 2026</p>
   </div>
 </footer>
 
