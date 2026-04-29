@@ -17,517 +17,83 @@
     --mono: 'Share Tech Mono', monospace;
     --sans: 'DM Sans', sans-serif;
   }
-
   * { margin: 0; padding: 0; box-sizing: border-box; }
-
-  body {
-    background: var(--bg);
-    color: var(--text);
-    font-family: var(--sans);
-    font-size: 15px;
-    line-height: 1.7;
-    min-height: 100vh;
-  }
-
-  body::before {
-    content: '';
-    position: fixed;
-    inset: 0;
-    background-image:
-      linear-gradient(rgba(0,212,170,0.03) 1px, transparent 1px),
-      linear-gradient(90deg, rgba(0,212,170,0.03) 1px, transparent 1px);
-    background-size: 40px 40px;
-    pointer-events: none;
-    z-index: 0;
-  }
-
-  .container {
-    max-width: 860px;
-    margin: 0 auto;
-    padding: 0 24px;
-    position: relative;
-    z-index: 1;
-  }
-
-  nav {
-    border-bottom: 1px solid var(--border);
-    padding: 18px 0;
-    position: sticky;
-    top: 0;
-    background: rgba(10,14,19,0.92);
-    backdrop-filter: blur(12px);
-    z-index: 100;
-  }
-
-  nav .container {
-    display: flex;
-    align-items: center;
-    justify-content: space-between;
-  }
-
-  .logo {
-    font-family: var(--mono);
-    font-size: 14px;
-    color: var(--accent);
-    letter-spacing: 0.05em;
-  }
-
+  body { background: var(--bg); color: var(--text); font-family: var(--sans); font-size: 15px; line-height: 1.7; min-height: 100vh; }
+  body::before { content: ''; position: fixed; inset: 0; background-image: linear-gradient(rgba(0,212,170,0.03) 1px, transparent 1px), linear-gradient(90deg, rgba(0,212,170,0.03) 1px, transparent 1px); background-size: 40px 40px; pointer-events: none; z-index: 0; }
+  .container { max-width: 860px; margin: 0 auto; padding: 0 24px; position: relative; z-index: 1; }
+  nav { border-bottom: 1px solid var(--border); padding: 18px 0; position: sticky; top: 0; background: rgba(10,14,19,0.92); backdrop-filter: blur(12px); z-index: 100; }
+  nav .container { display: flex; align-items: center; justify-content: space-between; }
+  .logo { font-family: var(--mono); font-size: 14px; color: var(--accent); letter-spacing: 0.05em; }
   .logo span { color: var(--muted); }
-
-  nav ul {
-    list-style: none;
-    display: flex;
-    gap: 28px;
-  }
-
-  nav a {
-    color: var(--muted);
-    text-decoration: none;
-    font-size: 13px;
-    font-family: var(--mono);
-    letter-spacing: 0.05em;
-    transition: color 0.2s;
-  }
-
+  nav ul { list-style: none; display: flex; gap: 28px; }
+  nav a { color: var(--muted); text-decoration: none; font-size: 13px; font-family: var(--mono); letter-spacing: 0.05em; transition: color 0.2s; }
   nav a:hover { color: var(--accent); }
-
-  .hero {
-    padding: 90px 0 72px;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .hero-tag {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.12em;
-    text-transform: uppercase;
-    margin-bottom: 20px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-  }
-
-  .hero-tag::before {
-    content: '';
-    width: 24px;
-    height: 1px;
-    background: var(--accent);
-  }
-
-  h1 {
-    font-family: var(--mono);
-    font-size: clamp(32px, 5vw, 52px);
-    font-weight: 400;
-    color: #eaf2f8;
-    line-height: 1.15;
-    margin-bottom: 8px;
-    letter-spacing: -0.01em;
-  }
-
-  .hero-sub {
-    font-family: var(--mono);
-    font-size: clamp(14px, 2vw, 18px);
-    color: var(--accent2);
-    margin-bottom: 24px;
-    opacity: 0.9;
-  }
-
-  .hero-desc {
-    max-width: 520px;
-    color: var(--muted);
-    font-size: 15px;
-    line-height: 1.8;
-    margin-bottom: 36px;
-  }
-
-  .hero-actions {
-    display: flex;
-    gap: 14px;
-    flex-wrap: wrap;
-  }
-
-  .btn {
-    font-family: var(--mono);
-    font-size: 13px;
-    letter-spacing: 0.06em;
-    padding: 11px 22px;
-    border-radius: 4px;
-    text-decoration: none;
-    transition: all 0.2s;
-    display: inline-flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .btn-primary {
-    background: var(--accent);
-    color: #0a0e13;
-    font-weight: 500;
-  }
-
-  .btn-primary:hover {
-    background: #00f0c0;
-    transform: translateY(-1px);
-  }
-
-  .btn-ghost {
-    border: 1px solid var(--border);
-    color: var(--muted);
-  }
-
-  .btn-ghost:hover {
-    border-color: var(--accent);
-    color: var(--accent);
-  }
-
-  section {
-    padding: 64px 0;
-    border-bottom: 1px solid var(--border);
-  }
-
-  .section-label {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.15em;
-    text-transform: uppercase;
-    margin-bottom: 32px;
-    display: flex;
-    align-items: center;
-    gap: 12px;
-  }
-
-  .section-label::after {
-    content: '';
-    flex: 1;
-    height: 1px;
-    background: var(--border);
-  }
-
-  .stack-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(200px, 1fr));
-    gap: 12px;
-  }
-
-  .stack-item {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 6px;
-    padding: 14px 16px;
-    display: flex;
-    align-items: center;
-    gap: 10px;
-    transition: border-color 0.2s;
-  }
-
+  .hero { padding: 90px 0 72px; border-bottom: 1px solid var(--border); }
+  .hero-tag { font-family: var(--mono); font-size: 12px; color: var(--accent); letter-spacing: 0.12em; text-transform: uppercase; margin-bottom: 20px; display: flex; align-items: center; gap: 10px; }
+  .hero-tag::before { content: ''; width: 24px; height: 1px; background: var(--accent); }
+  h1 { font-family: var(--mono); font-size: clamp(32px, 5vw, 52px); font-weight: 400; color: #eaf2f8; line-height: 1.15; margin-bottom: 8px; letter-spacing: -0.01em; }
+  .hero-sub { font-family: var(--mono); font-size: clamp(14px, 2vw, 18px); color: var(--accent2); margin-bottom: 24px; opacity: 0.9; }
+  .hero-desc { max-width: 520px; color: var(--muted); font-size: 15px; line-height: 1.8; margin-bottom: 36px; }
+  .hero-actions { display: flex; gap: 14px; flex-wrap: wrap; }
+  .btn { font-family: var(--mono); font-size: 13px; letter-spacing: 0.06em; padding: 11px 22px; border-radius: 4px; text-decoration: none; transition: all 0.2s; display: inline-flex; align-items: center; gap: 8px; }
+  .btn-primary { background: var(--accent); color: #0a0e13; font-weight: 500; }
+  .btn-primary:hover { background: #00f0c0; transform: translateY(-1px); }
+  .btn-ghost { border: 1px solid var(--border); color: var(--muted); }
+  .btn-ghost:hover { border-color: var(--accent); color: var(--accent); }
+  section { padding: 64px 0; border-bottom: 1px solid var(--border); }
+  .section-label { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.15em; text-transform: uppercase; margin-bottom: 32px; display: flex; align-items: center; gap: 12px; }
+  .section-label::after { content: ''; flex: 1; height: 1px; background: var(--border); }
+  .stack-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(200px, 1fr)); gap: 12px; }
+  .stack-item { background: var(--surface); border: 1px solid var(--border); border-radius: 6px; padding: 14px 16px; display: flex; align-items: center; gap: 10px; transition: border-color 0.2s; }
   .stack-item:hover { border-color: var(--accent); }
-
-  .stack-dot {
-    width: 6px;
-    height: 6px;
-    border-radius: 50%;
-    background: var(--accent);
-    flex-shrink: 0;
-  }
-
+  .stack-dot { width: 6px; height: 6px; border-radius: 50%; background: var(--accent); flex-shrink: 0; }
   .stack-dot.blue { background: var(--accent2); }
-
-  .stack-item span {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--text);
-  }
-
-  .certs-grid {
-    display: grid;
-    grid-template-columns: repeat(auto-fill, minmax(260px, 1fr));
-    gap: 16px;
-  }
-
-  .cert-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 22px;
-    text-decoration: none;
-    transition: all 0.2s;
-    display: block;
-    position: relative;
-    overflow: hidden;
-  }
-
-  .cert-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px;
-    height: 100%;
-    background: var(--accent);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
-  .cert-card:hover {
-    border-color: var(--accent);
-    transform: translateY(-2px);
-  }
-
+  .stack-item span { font-family: var(--mono); font-size: 13px; color: var(--text); }
+  .certs-grid { display: grid; grid-template-columns: repeat(auto-fill, minmax(260px, 1fr)); gap: 16px; }
+  .cert-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 22px; text-decoration: none; transition: all 0.2s; display: block; position: relative; overflow: hidden; }
+  .cert-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent); opacity: 0; transition: opacity 0.2s; }
+  .cert-card:hover { border-color: var(--accent); transform: translateY(-2px); }
   .cert-card:hover::before { opacity: 1; }
-
-  .cert-issuer {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 8px;
-  }
-
-  .cert-name {
-    font-size: 14px;
-    color: #eaf2f8;
-    font-weight: 500;
-    line-height: 1.4;
-    margin-bottom: 10px;
-  }
-
-  .cert-link {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
-  .cert-link::after {
-    content: '↗';
-    font-size: 12px;
-  }
-
-  /* PROJECTS */
-  .projects-list {
-    display: flex;
-    flex-direction: column;
-    gap: 16px;
-  }
-
-  .project-card {
-    background: var(--surface);
-    border: 1px solid var(--border);
-    border-radius: 8px;
-    padding: 24px;
-    transition: border-color 0.2s;
-    position: relative;
-    overflow: hidden;
-    text-decoration: none;
-    display: block;
-    width: 100%;
-    box-sizing: border-box;
-  }
-
-  .project-card::before {
-    content: '';
-    position: absolute;
-    top: 0; left: 0;
-    width: 3px;
-    height: 100%;
-    background: var(--accent);
-    opacity: 0;
-    transition: opacity 0.2s;
-  }
-
+  .cert-issuer { font-family: var(--mono); font-size: 11px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 8px; }
+  .cert-name { font-size: 14px; color: #eaf2f8; font-weight: 500; line-height: 1.4; margin-bottom: 10px; }
+  .cert-link { font-family: var(--mono); font-size: 11px; color: var(--muted); display: flex; align-items: center; gap: 6px; }
+  .cert-link::after { content: '↗'; font-size: 12px; }
+  .projects-list { display: flex; flex-direction: column; gap: 16px; }
+  .project-card { background: var(--surface); border: 1px solid var(--border); border-radius: 8px; padding: 24px; transition: border-color 0.2s; position: relative; overflow: hidden; text-decoration: none; display: block; width: 100%; box-sizing: border-box; }
+  .project-card::before { content: ''; position: absolute; top: 0; left: 0; width: 3px; height: 100%; background: var(--accent); opacity: 0; transition: opacity 0.2s; }
   .project-card:hover { border-color: var(--accent); }
   .project-card:hover::before { opacity: 1; }
-
-  .project-header {
-    display: flex;
-    align-items: flex-start;
-    justify-content: space-between;
-    gap: 16px;
-    margin-bottom: 10px;
-    flex-wrap: wrap;
-  }
-
-  .project-name {
-    font-family: var(--mono);
-    font-size: 15px;
-    color: #eaf2f8;
-  }
-
-  .project-status {
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 3px 10px;
-    border-radius: 20px;
-    flex-shrink: 0;
-  }
-
-  .status-live {
-    background: rgba(0,212,170,0.1);
-    color: var(--accent);
-    border: 1px solid rgba(0,212,170,0.25);
-  }
-
-  .status-planned {
-    background: rgba(74,96,112,0.2);
-    color: var(--muted);
-    border: 1px solid var(--border);
-  }
-
-  .project-desc {
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.7;
-    margin-bottom: 14px;
-  }
-
-  .project-highlights {
-    list-style: none;
-    margin-bottom: 16px;
-  }
-
-  .project-highlights li {
-    font-size: 13px;
-    color: var(--muted);
-    padding: 3px 0;
-    display: flex;
-    align-items: flex-start;
-    gap: 8px;
-  }
-
-  .project-highlights li::before {
-    content: '→';
-    color: var(--accent);
-    font-family: var(--mono);
-    flex-shrink: 0;
-    margin-top: 1px;
-  }
-
-  .project-tags {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 8px;
-  }
-
-  .tag {
-    font-family: var(--mono);
-    font-size: 11px;
-    padding: 3px 10px;
-    background: rgba(10,143,255,0.08);
-    border: 1px solid rgba(10,143,255,0.2);
-    color: var(--accent2);
-    border-radius: 3px;
-  }
-
-  .tag-sec {
-    background: rgba(0,212,170,0.06);
-    border: 1px solid rgba(0,212,170,0.2);
-    color: var(--accent);
-  }
-
-  .project-link {
-    font-family: var(--mono);
-    font-size: 11px;
-    color: var(--muted);
-    margin-top: 14px;
-    display: flex;
-    align-items: center;
-    gap: 6px;
-  }
-
+  .project-header { display: flex; align-items: flex-start; justify-content: space-between; gap: 16px; margin-bottom: 10px; flex-wrap: wrap; }
+  .project-name { font-family: var(--mono); font-size: 15px; color: #eaf2f8; }
+  .project-status { font-family: var(--mono); font-size: 11px; padding: 3px 10px; border-radius: 20px; flex-shrink: 0; }
+  .status-live { background: rgba(0,212,170,0.1); color: var(--accent); border: 1px solid rgba(0,212,170,0.25); }
+  .project-desc { color: var(--muted); font-size: 14px; line-height: 1.7; margin-bottom: 14px; }
+  .project-highlights { list-style: none; margin-bottom: 16px; }
+  .project-highlights li { font-size: 13px; color: var(--muted); padding: 3px 0; display: flex; align-items: flex-start; gap: 8px; }
+  .project-highlights li::before { content: '→'; color: var(--accent); font-family: var(--mono); flex-shrink: 0; margin-top: 1px; }
+  .project-tags { display: flex; flex-wrap: wrap; gap: 8px; }
+  .tag { font-family: var(--mono); font-size: 11px; padding: 3px 10px; background: rgba(10,143,255,0.08); border: 1px solid rgba(10,143,255,0.2); color: var(--accent2); border-radius: 3px; }
+  .tag-sec { background: rgba(0,212,170,0.06); border: 1px solid rgba(0,212,170,0.2); color: var(--accent); }
+  .project-link { font-family: var(--mono); font-size: 11px; color: var(--muted); margin-top: 14px; display: flex; align-items: center; gap: 6px; }
   .project-link::after { content: '↗'; }
-
-  .about-grid {
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 32px;
-  }
-
-  @media (max-width: 580px) {
-    .about-grid { grid-template-columns: 1fr; }
-    nav ul { display: none; }
-  }
-
-  .about-block h3 {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--accent);
-    letter-spacing: 0.1em;
-    text-transform: uppercase;
-    margin-bottom: 12px;
-  }
-
-  .about-block p {
-    color: var(--muted);
-    font-size: 14px;
-    line-height: 1.8;
-  }
-
-  .contact-row {
-    display: flex;
-    flex-wrap: wrap;
-    gap: 14px;
-  }
-
-  .contact-link {
-    font-family: var(--mono);
-    font-size: 13px;
-    color: var(--muted);
-    text-decoration: none;
-    border: 1px solid var(--border);
-    padding: 10px 18px;
-    border-radius: 4px;
-    transition: all 0.2s;
-    display: flex;
-    align-items: center;
-    gap: 8px;
-  }
-
-  .contact-link:hover {
-    color: var(--accent);
-    border-color: var(--accent);
-  }
-
-  footer {
-    padding: 32px 0;
-    text-align: center;
-  }
-
-  footer p {
-    font-family: var(--mono);
-    font-size: 12px;
-    color: var(--muted);
-  }
-
-  @keyframes fadeUp {
-    from { opacity: 0; transform: translateY(16px); }
-    to   { opacity: 1; transform: translateY(0); }
-  }
-
+  .about-grid { display: grid; grid-template-columns: 1fr 1fr; gap: 32px; }
+  @media (max-width: 580px) { .about-grid { grid-template-columns: 1fr; } nav ul { display: none; } }
+  .about-block h3 { font-family: var(--mono); font-size: 12px; color: var(--accent); letter-spacing: 0.1em; text-transform: uppercase; margin-bottom: 12px; }
+  .about-block p { color: var(--muted); font-size: 14px; line-height: 1.8; }
+  .contact-row { display: flex; flex-wrap: wrap; gap: 14px; }
+  .contact-link { font-family: var(--mono); font-size: 13px; color: var(--muted); text-decoration: none; border: 1px solid var(--border); padding: 10px 18px; border-radius: 4px; transition: all 0.2s; display: flex; align-items: center; gap: 8px; }
+  .contact-link:hover { color: var(--accent); border-color: var(--accent); }
+  footer { padding: 32px 0; text-align: center; }
+  footer p { font-family: var(--mono); font-size: 12px; color: var(--muted); }
+  @keyframes fadeUp { from { opacity: 0; transform: translateY(16px); } to { opacity: 1; transform: translateY(0); } }
   .hero > * { animation: fadeUp 0.5s ease both; }
-  .hero-tag     { animation-delay: 0.05s; }
-  h1            { animation-delay: 0.12s; }
-  .hero-sub     { animation-delay: 0.18s; }
-  .hero-desc    { animation-delay: 0.24s; }
+  .hero-tag { animation-delay: 0.05s; }
+  h1 { animation-delay: 0.12s; }
+  .hero-sub { animation-delay: 0.18s; }
+  .hero-desc { animation-delay: 0.24s; }
   .hero-actions { animation-delay: 0.30s; }
-
-  .cursor {
-    display: inline-block;
-    width: 8px;
-    height: 14px;
-    background: var(--accent);
-    margin-left: 2px;
-    vertical-align: middle;
-    animation: blink 1s step-end infinite;
-  }
-
-  @keyframes blink {
-    0%, 100% { opacity: 1; }
-    50%       { opacity: 0; }
-  }
+  .cursor { display: inline-block; width: 8px; height: 14px; background: var(--accent); margin-left: 2px; vertical-align: middle; animation: blink 1s step-end infinite; }
+  @keyframes blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
 </style>
 </head>
 <body>
@@ -574,7 +140,9 @@
       <div class="stack-item"><div class="stack-dot"></div><span>Redes TCP/IP</span></div>
       <div class="stack-item"><div class="stack-dot"></div><span>Flask</span></div>
       <div class="stack-item"><div class="stack-dot"></div><span>bcrypt / hashing</span></div>
+      <div class="stack-item"><div class="stack-dot blue"></div><span>GitHub Actions</span></div>
       <div class="stack-item"><div class="stack-dot blue"></div><span>Git & GitHub</span></div>
+      <div class="stack-item"><div class="stack-dot blue"></div><span>SAST / Bandit</span></div>
       <div class="stack-item"><div class="stack-dot blue"></div><span>HTML / CSS / JS</span></div>
     </div>
   </section>
@@ -633,21 +201,31 @@
         <div class="project-link">github.com/v1ctor-cyber/db-security-hospital</div>
       </a>
 
-      <div class="project-card" style="opacity:0.5; cursor:default;">
+      <a href="https://github.com/v1ctor-cyber/db-security-hospital/actions" target="_blank" class="project-card">
         <div class="project-header">
-          <div class="project-name">devSecOps-pipeline</div>
-          <span class="project-status status-planned">em breve</span>
+          <div class="project-name">devsecops-pipeline</div>
+          <span class="project-status status-live">live</span>
         </div>
         <p class="project-desc">
-          Pipeline CI/CD com GitHub Actions integrando análise de segurança automática —
-          SAST, dependency scanning e validação de secrets antes de cada deploy.
+          Pipeline de segurança automatizada integrada ao db-security-hospital.
+          Roda a cada commit detectando vulnerabilidades no código Python antes que cheguem à produção.
         </p>
+        <ul class="project-highlights">
+          <li>Bandit detectou SQL injection no app_vuln.py automaticamente — CWE-89</li>
+          <li>Safety verificando CVEs em todas as dependências a cada push</li>
+          <li>Pipeline rodou 3 vezes — detectou, corrigiu, confirmou</li>
+          <li>debug=True no Flask detectado como High severity antes do deploy</li>
+        </ul>
         <div class="project-tags">
           <span class="tag tag-sec">DevSecOps</span>
+          <span class="tag tag-sec">SAST</span>
+          <span class="tag tag-sec">CWE-89</span>
           <span class="tag">GitHub Actions</span>
-          <span class="tag">SAST</span>
+          <span class="tag">Bandit</span>
+          <span class="tag">Safety</span>
         </div>
-      </div>
+        <div class="project-link">github.com/v1ctor-cyber/db-security-hospital/actions</div>
+      </a>
 
     </div>
   </section>
@@ -679,7 +257,7 @@
     <div class="contact-row">
       <a href="mailto:victorhugodsilva8@gmail.com" class="contact-link">✉ victorhugodsilva8@gmail.com</a>
       <a href="https://linkedin.com/in/victor-cyber" target="_blank" class="contact-link">in/ linkedin</a>
-      <a href="https://github.com/v1ctor-cyber" target="_blank" class="contact-link">gh/ github</a>
+      <a href="https://github.com/v1ctor-cyber" target="_blank" class="contact-link">gh/ github</div>
     </div>
   </section>
 
